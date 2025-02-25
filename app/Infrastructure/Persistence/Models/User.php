@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Infrastructure\Persistence\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Shared\Traits\HasBinaryUUID;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laratrust\Contracts\LaratrustUser;
+use Laratrust\Traits\HasRolesAndPermissions;
 
-class User extends Authenticatable
+class User extends Authenticatable implements LaratrustUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRolesAndPermissions, SoftDeletes, HasBinaryUUID;
 
     /**
      * The attributes that are mass assignable.
@@ -20,7 +24,13 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone_1',
+        'phone_2',
+        'address',
+        'emergency_contacts',
         'password',
+        'is_active',
+        'birth_date',
     ];
 
     /**
@@ -41,8 +51,11 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'birth_date'         => 'datetime',
+            'is_active'          => 'boolean',
+            'email_verified_at'  => 'datetime',
+            'password'           => 'hashed',
+            'emergency_contacts' => 'array',
         ];
     }
 }
