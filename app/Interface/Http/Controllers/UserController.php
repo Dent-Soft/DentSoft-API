@@ -4,7 +4,7 @@ namespace App\Interface\Http\Controllers;
 
 use App\Application\Commands\CreateUserCommand;
 use App\Application\DTOs\User\CreateUserDTO;
-use App\Infrastructure\Requests\CreateUserRequest;
+use App\Interface\Http\Requests\CreateUserRequest;
 use App\Shared\Utils\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Bus\Dispatcher;
