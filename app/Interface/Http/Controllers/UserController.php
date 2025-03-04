@@ -27,8 +27,10 @@ class UserController
             return ApiResponse::success($user);
         } catch (ValidationException $th) {
             return ApiResponse::validationError($th);
+        } catch (\DomainException $th) {
+            return ApiResponse::error($th, 400);
         } catch (\Exception $th) {
-            return ApiResponse::error($th);
+            return ApiResponse::error($th->getMessage());
         }
     }
 }

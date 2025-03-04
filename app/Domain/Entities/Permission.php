@@ -11,11 +11,13 @@ class Permission
     use AccessorTrait;
 
     public function __construct(
-        #[Getter] #[Setter]
+        #[Getter]
         private ?string $id,
-        #[Getter] #[Setter]
+        #[Getter]
         private ?string $name,
-        #[Getter] #[Setter]
+        #[Getter]
+        private ?string $displayName,
+        #[Getter]
         private ?string $description,
     ) {
     }
@@ -23,9 +25,10 @@ class Permission
     public function toArray(): array
     {
         return [
-            'id'          => $this->id,
-            'name'        => $this->name,
-            'description' => $this->description,
+            'id'           => $this->id,
+            'name'         => $this->name,
+            'display_name' => $this->displayName,
+            'description'  => $this->description,
         ];
     }
 }

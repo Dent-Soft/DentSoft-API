@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c287b43645bc2bbfe70cf364f01f544",
+    "content-hash": "b7ee5ea396789e32c13106c7a0a594a8",
     "packages": [
         {
             "name": "brick/math",
@@ -3351,16 +3351,16 @@
         },
         {
             "name": "santigarcor/laratrust",
-            "version": "8.4.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/santigarcor/laratrust.git",
-                "reference": "ca3f84b548c2432930203cdad88b1bdb5418f5e8"
+                "url": "https://github.com/Nicodav28/laratrust.git",
+                "reference": "39944e1ec62e3e6e0277ad7b85c157ce13c94073"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/ca3f84b548c2432930203cdad88b1bdb5418f5e8",
-                "reference": "ca3f84b548c2432930203cdad88b1bdb5418f5e8",
+                "url": "https://api.github.com/repos/Nicodav28/laratrust/zipball/39944e1ec62e3e6e0277ad7b85c157ce13c94073",
+                "reference": "39944e1ec62e3e6e0277ad7b85c157ce13c94073",
                 "shasum": ""
             },
             "require": {
@@ -3373,15 +3373,16 @@
                 "orchestra/testbench": "^8.0|^9.0|^10.0",
                 "phpunit/phpunit": "^8.4|^9.0|^10.5|^11.5.3"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "Laratrust": "Laratrust\\LaratrustFacade"
-                    },
                     "providers": [
                         "Laratrust\\LaratrustServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "Laratrust": "Laratrust\\LaratrustFacade"
+                    }
                 }
             },
             "autoload": {
@@ -3389,7 +3390,11 @@
                     "Laratrust\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Laratrust\\Tests\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -3401,7 +3406,6 @@
             ],
             "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
             "keywords": [
-                "Teams",
                 "acl",
                 "authorization",
                 "laratrust",
@@ -3410,19 +3414,19 @@
                 "permissions",
                 "php",
                 "rbac",
-                "roles"
+                "roles",
+                "teams"
             ],
             "support": {
-                "issues": "https://github.com/santigarcor/laratrust/issues",
-                "source": "https://github.com/santigarcor/laratrust/tree/8.4.0"
+                "source": "https://github.com/Nicodav28/laratrust/tree/master"
             },
             "funding": [
                 {
-                    "url": "https://github.com/santigarcor",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/santigarcor"
                 }
             ],
-            "time": "2025-02-24T15:56:59+00:00"
+            "time": "2025-03-04T18:20:10+00:00"
         },
         {
             "name": "symfony/clock",
@@ -8203,7 +8207,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": {
+        "santigarcor/laratrust": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

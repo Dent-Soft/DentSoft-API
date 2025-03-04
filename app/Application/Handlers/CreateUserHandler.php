@@ -3,24 +3,25 @@
 namespace App\Application\Handlers;
 
 use App\Application\Commands\CreateUserCommand;
-use App\Domain\Factories\UserFactory;
-use App\Domain\Repositories\UserRepository;
+use App\Application\UseCases\Interfaces\ICreateUserUseCase;
+use Illuminate\Support\Facades\Log;
+use RuntimeException;
 
 class CreateUserHandler
 {
-    // public function __construct(private UserRepository $userRepository)
-    // {
-    // }
+    public function __construct(private readonly ICreateUserUseCase $useCase)
+    {
+    }
 
     public function handle(CreateUserCommand $command)
     {
-        // if ($this->userRepository->findByEmail($command->userDTO->email)) {
-        //     throw new Exception("El email ya está registrado.");
-        // }
-
-        $user = UserFactory::create($command->userDTO);
-
-        return $user->toArray();
-        // $this->userRepository->save($user);
+        try {
+            return $this->useCase->execute($command);
+        } catch (\DomainException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            Log::error('Error en CreateUserHandler@handle: ' . $e->getMessage());
+            throw new RuntimeException('Error al crear el usuario.');
+        }
     }
 }

@@ -3,7 +3,8 @@
 namespace App\Infrastructure\Persistence\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Shared\Traits\HasBinaryUUID;
+
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +15,7 @@ use Laratrust\Traits\HasRolesAndPermissions;
 class User extends Authenticatable implements LaratrustUser
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, HasRolesAndPermissions, SoftDeletes, HasBinaryUUID;
+    use HasFactory, Notifiable, HasRolesAndPermissions, SoftDeletes, HasUuids;
 
     /**
      * The attributes that are mass assignable.

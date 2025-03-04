@@ -11,14 +11,16 @@ class Role
     use AccessorTrait;
 
     public function __construct(
-        #[Getter] #[Setter]
+        #[Getter]
         private ?string $id,
-        #[Getter] #[Setter]
+        #[Getter]
         private ?string $name,
-        #[Getter] #[Setter]
+        #[Getter]
+        private ?string $displayName,
+        #[Getter]
         private ?string $description,
             /** @var Permission[] */
-        #[Getter] #[Setter]
+        #[Getter]
         private ?array $permissions
     ) {
     }

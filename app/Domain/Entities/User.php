@@ -12,30 +12,29 @@ class User
     use AccessorTrait;
 
     public function __construct(
-        #[Getter] #[Setter]
-        private string $id,
-        #[Getter] #[Setter]
+        #[Getter]
+        private ?string $id,
+        #[Getter]
         private string $name,
-        #[Getter] #[Setter]
+        #[Getter]
         private string $email,
-        #[Getter] #[Setter]
+        #[Getter]
         private string $phone1,
-        #[Getter] #[Setter]
+        #[Getter]
         private string $password,
-        #[Getter] #[Setter]
+        #[Getter]
         private string $address,
-            /** @var Role[] */
-        #[Setter]
+        /** @var Role[] */
         private ?array $roles = [],
-        #[Getter] #[Setter]
+        #[Getter]
         private ?string $phone2 = null,
-        #[Getter] #[Setter]
+        #[Getter]
         private bool $isActive = true,
-        #[Getter] #[Setter]
+        #[Getter]
         private ?array $emergencyContacts = [],
-        #[Getter] #[Setter]
+        #[Getter]
         private ?Carbon $birthDate = null,
-        #[Getter] #[Setter]
+        #[Getter]
         private ?Carbon $emailVerifiedAt = null,
     ) {
     }

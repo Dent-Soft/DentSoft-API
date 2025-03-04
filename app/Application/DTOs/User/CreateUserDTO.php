@@ -29,7 +29,7 @@ class CreateUserDTO
             $data['address'],
             $data['emergency_contacts'] ?? [],
             Carbon::parse($data['birth_date']),
-            Hash::make($data['password'], [ 'rounds' => 12 ]),
+            $data['password'],
         );
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Shared\Utils;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\UnauthorizedException;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -103,4 +104,21 @@ class ApiResponse
     {
         return response()->json($response, $status);
     }
+
+    /**
+     * Generates an error unauthorized response.
+     *
+     * @param UnauthorizedException $exception
+     * @return JsonResponse
+     */
+    public static function unauthorizedError(string $message): JsonResponse
+    {
+        return response()->json([
+            'status'  => 'error',
+            'message' => $message,
+            'data'    => []
+        ], 403);
+    }
+
+
 }

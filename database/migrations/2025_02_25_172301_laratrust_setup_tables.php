@@ -43,7 +43,7 @@ class LaratrustSetupTables extends Migration
         // Create table for associating roles to users and teams (Many To Many Polymorphic)
         Schema::create('role_user', function (Blueprint $table) {
             $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->string('user_type');
             $table->unsignedBigInteger('team_id')->nullable();
 
@@ -52,13 +52,13 @@ class LaratrustSetupTables extends Migration
             $table->foreign('team_id')->references('id')->on('teams')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unique(['user_id', 'role_id', 'user_type', 'team_id']);
+            $table->unique([ 'user_id', 'role_id', 'user_type', 'team_id' ]);
         });
 
         // Create table for associating permissions to users (Many To Many Polymorphic)
         Schema::create('permission_user', function (Blueprint $table) {
             $table->unsignedBigInteger('permission_id');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid('user_id');
             $table->string('user_type');
             $table->unsignedBigInteger('team_id')->nullable();
 
@@ -67,7 +67,7 @@ class LaratrustSetupTables extends Migration
             $table->foreign('team_id')->references('id')->on('teams')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->unique(['user_id', 'permission_id', 'user_type', 'team_id']);
+            $table->unique([ 'user_id', 'permission_id', 'user_type', 'team_id' ]);
         });
 
         // Create table for associating permissions to roles (Many-to-Many)
@@ -80,7 +80,7 @@ class LaratrustSetupTables extends Migration
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
 
-            $table->primary(['permission_id', 'role_id']);
+            $table->primary([ 'permission_id', 'role_id' ]);
         });
     }
 
